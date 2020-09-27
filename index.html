@@ -76,12 +76,14 @@
                     document.cookie = "theme=dark";
                     document.getElementById("themebutton").innerHTML = "Dark Theme: ON"
                     console.log(getTheme());
+                    window.history.replaceState(null, null, "?theme=dark");
                 }
                 else{
                     document.getElementById("theme").setAttribute("href", "style.css");
                     document.cookie = "theme=light"
                     document.getElementById("themebutton").innerHTML = "Dark Theme: OFF"
                     console.log(getTheme());
+                    window.history.replaceState(null, null, "?theme=light");
                 }
                 //console.log(x);
             }
