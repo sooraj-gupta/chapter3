@@ -212,6 +212,7 @@ input[type=text], textarea{
     font-size: 18px;
     font-weight: 100;
     background-color : var(--black);
+    color: var(--white);
 }
 
 input:focus, textarea:focus{
