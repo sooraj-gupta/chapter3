@@ -1,438 +1,476 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Chapter 3</title>
-        <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
-        </script>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <meta property="og:image" content="assets/logo.png" />
-        
-        <link id = "theme" rel="stylesheet" href="style.css">    
-        <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADlklEQVRYCcVXSyhtURj+kcfJ45CBlJLHvTOTO5MRJZSBgYE7oZQZKWbMSKTjNaKOQ0phwggTDCgZnCJOioGUGLhXSbnpOny3b7X3bj8WHZzbWbXb6/E/vr3W/3//2iKxN7+I/BSRoIiEReS3iESNh33OcY0ylI1b+y4iIRH5IyKI8aEsdaj76eYTkYCI/I3RqQ4cdWmDtj7UvolI5AuO3WBoizZjaj9E5FccnZtgaJO2321E+T+c20G8uRM8p3huu+nU/aYPbUwwWNzC/2tMX47GdPlKtH8UKH05UpQ56zGSk5ODrq4uLC4uYm1tDTMzM2hubkZKSopHlvqVlZWYnJzE6uoqFhYW0N7ejvT0dK2swRNqF8haHpIpKirC5eUlTk9PMTIygr6+PszNzeHh4QF7e3vIyspyGB4eHsbz8zNWVlbQ39+P8fFxXF9f4/j4GAUFBQ5Z42PpUzEmqdMjMD09jXA4jLS0NMdaaWkpbm9vMTQ0ZM3X1tbi5eUFDQ0N1hxt5uXlIRKJYHl52TFv80ffir89AvxKfrlN2OpPTU1hf3/fGodCIWxvb1tju05bWxuenp6QmpqqW2ftUEXEs7i0tITd3V3teVdVVaG1tdXS2djYwOzsrDW2A6ioqMD6+rrnyAwZFjBV1TzKVLy/v8fOzg7o0G7U3d/c3EQwGHxXxq1jjFlFVUnVKpeVlanzi0ajODo6QkdHBzIyMjyybgCUKSkpcTxJSUkePcP32wBM1MXFxWCU393d4erqCk1NTQ5jbgAMSnfLz8936Bi2eZ/QH4Hp3P7Ozs7G2NiYinjygbnmBsCv5S7wqa+vV1jeAKCOgIFgGWOfETs6Oqq20L3G8fz8PA4PDy2d94KwpqZGAWBKamypIGQqOBaZ+6+vr2hsbHTMm3Ld3d2KZMwxAW1tbWllW1pa8Pj4iOTkZN26SkMtER0cHCij7qDj7jA9SbcmABIQiaiurs6a45rP5wPtMKVNWddbEZGWipmGNzc3uLi4QCAQQE9PDwYGBnBycqICsby83GF0YmJCUTHrRm9vLwYHB3F+fo6zszMUFhY6ZA0QFhUzELXFKDc3F9xufgEDjZTKsd/v1xlEdXW1KliMCdaEzs5OZGZmamXtxYgAEl6OCSKhFxICSPiVjCASeiklALaEXssNDGon4nlD/tCPiQmCMcHA/Mpl9dO/ZiYIvpmiCfk5tYNgn4xJ6iR/s4jE5ff8HzYLHs0NdS0xAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
-        
-        <link rel="stylesheet" href="scroll/scroll.css" />
-        
-        <script>
-            var pages = ['key','1','2','3'];
-            function show(shown) {
-                var shownPage = -1;
-                for( var i = 0; i < pages.length; i++) {
-                    if (pages[i] == shown){
-                        shownPage = i;
-                        //document.getElementById(shown).style.display='block';
-                        console.log("hidden");
-                    }
-                }
-                for( var i = 0; i < pages.length; i++) {
-                    if( i != shownPage )
-                    {
-                        //document.getElementById(pages[i]).style.display='none';
-                    }
-                }
+<head>
+    <title>Chapter 3</title>
+    <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="assets/logo.png" />
+
+    <link id = "theme" rel="stylesheet" href="style.css">
+    <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADlklEQVRYCcVXSyhtURj+kcfJ45CBlJLHvTOTO5MRJZSBgYE7oZQZKWbMSKTjNaKOQ0phwggTDCgZnCJOioGUGLhXSbnpOny3b7X3bj8WHZzbWbXb6/E/vr3W/3//2iKxN7+I/BSRoIiEReS3iESNh33OcY0ylI1b+y4iIRH5IyKI8aEsdaj76eYTkYCI/I3RqQ4cdWmDtj7UvolI5AuO3WBoizZjaj9E5FccnZtgaJO2321E+T+c20G8uRM8p3huu+nU/aYPbUwwWNzC/2tMX47GdPlKtH8UKH05UpQ56zGSk5ODrq4uLC4uYm1tDTMzM2hubkZKSopHlvqVlZWYnJzE6uoqFhYW0N7ejvT0dK2swRNqF8haHpIpKirC5eUlTk9PMTIygr6+PszNzeHh4QF7e3vIyspyGB4eHsbz8zNWVlbQ39+P8fFxXF9f4/j4GAUFBQ5Z42PpUzEmqdMjMD09jXA4jLS0NMdaaWkpbm9vMTQ0ZM3X1tbi5eUFDQ0N1hxt5uXlIRKJYHl52TFv80ffir89AvxKfrlN2OpPTU1hf3/fGodCIWxvb1tju05bWxuenp6QmpqqW2ftUEXEs7i0tITd3V3teVdVVaG1tdXS2djYwOzsrDW2A6ioqMD6+rrnyAwZFjBV1TzKVLy/v8fOzg7o0G7U3d/c3EQwGHxXxq1jjFlFVUnVKpeVlanzi0ajODo6QkdHBzIyMjyybgCUKSkpcTxJSUkePcP32wBM1MXFxWCU393d4erqCk1NTQ5jbgAMSnfLz8936Bi2eZ/QH4Hp3P7Ozs7G2NiYinjygbnmBsCv5S7wqa+vV1jeAKCOgIFgGWOfETs6Oqq20L3G8fz8PA4PDy2d94KwpqZGAWBKamypIGQqOBaZ+6+vr2hsbHTMm3Ld3d2KZMwxAW1tbWllW1pa8Pj4iOTkZN26SkMtER0cHCij7qDj7jA9SbcmABIQiaiurs6a45rP5wPtMKVNWddbEZGWipmGNzc3uLi4QCAQQE9PDwYGBnBycqICsby83GF0YmJCUTHrRm9vLwYHB3F+fo6zszMUFhY6ZA0QFhUzELXFKDc3F9xufgEDjZTKsd/v1xlEdXW1KliMCdaEzs5OZGZmamXtxYgAEl6OCSKhFxICSPiVjCASeiklALaEXssNDGon4nlD/tCPiQmCMcHA/Mpl9dO/ZiYIvpmiCfk5tYNgn4xJ6iR/s4jE5ff8HzYLHs0NdS0xAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
+
+    <link rel="stylesheet" href="scroll/scroll.css" />
+
+    <script>
+    var pages = ['key','1','2','3'];
+    function show(shown) {
+        var shownPage = -1;
+        for( var i = 0; i < pages.length; i++) {
+            if (pages[i] == shown){
+                shownPage = i;
+                //document.getElementById(shown).style.display='block';
+                console.log("hidden");
             }
-        </script>
-        <script>
-             var dark = false;
-            document.cookie = "theme=light";
-            
-            window.onload = function()
+        }
+        for( var i = 0; i < pages.length; i++) {
+            if( i != shownPage )
             {
-                const query = window.location.search;
-                const urlParams = new URLSearchParams(query);
-                const theme = urlParams.get('theme');
-                if( theme == "dark")
-                    dark = true;
-                if( theme == "light")
-                    dark = false;
-                
-                setTheme();
-                console.log(theme);
+                //document.getElementById(pages[i]).style.display='none';
             }
-            
-            
-            
-            function getTheme(){
-                var x = document.cookie;
-                var themeIdx = x.indexOf("theme=");
-                var theme = x.substr(themeIdx+6,x.length);
-                if( theme == "light"){
-                    dark = false;
-                }
-                if( theme == "dark" ){
-                    dark = true;
-                }
-                //console.log(theme);
-                return theme;
-            }
-            function adjustTheme(){
-                dark = !dark;
-                setTheme();
-            }
-            function setTheme() {
-                if( dark ){
-                    document.getElementById("theme").setAttribute("href", "styleblack.css");
-                    document.cookie = "theme=dark";
-                    document.getElementById("themebutton").innerHTML = "Dark Theme: ON"
-                    console.log(getTheme());
-                    window.history.replaceState(null, null, "?theme=dark");
-                }
-                else{
-                    document.getElementById("theme").setAttribute("href", "style.css");
-                    document.cookie = "theme=light"
-                    document.getElementById("themebutton").innerHTML = "Dark Theme: OFF"
-                    console.log(getTheme());
-                    window.history.replaceState(null, null, "?theme=light");
-                }
-                //console.log(x);
-            }
-            
-        </script>
-    </head> 
-    <body>
-        <center>
+        }
+    }
+    </script>
+    <script>
+    var dark = false;
+    document.cookie = "theme=light";
+
+    window.onload = function()
+    {
+        const query = window.location.search;
+        const urlParams = new URLSearchParams(query);
+        const theme = urlParams.get('theme');
+        if( theme == "dark")
+        dark = true;
+        if( theme == "light")
+        dark = false;
+
+        setTheme();
+        console.log(theme);
+    }
+
+
+    function toggleForm()
+    {
+        var form = document.getElementById("form");
+        if (form.style.height === "0px") {
+            form.style.height = "600px";
+        } else {
+            form.style.height = "0px";
+        }
+    }
+
+    function getTheme(){
+        var x = document.cookie;
+        var themeIdx = x.indexOf("theme=");
+        var theme = x.substr(themeIdx+6,x.length);
+        if( theme == "light"){
+            dark = false;
+        }
+        if( theme == "dark" ){
+            dark = true;
+        }
+        //console.log(theme);
+        return theme;
+    }
+    function adjustTheme(){
+        dark = !dark;
+        setTheme();
+    }
+    function setTheme() {
+        if( dark ){
+            document.getElementById("theme").setAttribute("href", "styleblack.css");
+            document.cookie = "theme=dark";
+            document.getElementById("themebutton").innerHTML = "Dark Theme: ON"
+            console.log(getTheme());
+            window.history.replaceState(null, null, "?theme=dark");
+        }
+        else{
+            document.getElementById("theme").setAttribute("href", "style.css");
+            document.cookie = "theme=light"
+            document.getElementById("themebutton").innerHTML = "Dark Theme: OFF"
+            console.log(getTheme());
+            window.history.replaceState(null, null, "?theme=light");
+        }
+        //console.log(x);
+    }
+
+    </script>
+</head>
+<body>
+    <center>
         <div class = "bg" style = "height:100vh; background-size: cover; position: fixed; width: 100vw; "></div>
         <div id = "main" style="min-height: 130vh; display: flex; justify-content: center; align-items: center; position: relative; background-color: transparent" >
-        <div style = "background-color: transparent">
-            <a id = "themebutton" class = "button" style = "position: fixed ; right:10px; top:10px; z-index: 10000;" onclick="adjustTheme()">Dark Theme: OFF</a>
-            <div style="background-color: rgba(0,0,0,0)">
-                <div class="typewriter" style = "background-color: transparent;">
-                    <p style = "font-size: 50px; font-weight: 100; ">Chapter 3</p>
+            <div style = "background-color: transparent">
+                <a id = "themebutton" class = "button" style = "position: fixed ; right:10px; top:10px; z-index: 10000;" onclick="adjustTheme()">Dark Theme: OFF</a>
+                <div style="background-color: rgba(0,0,0,0)">
+                    <div class="typewriter" style = "background-color: transparent;">
+                        <p style = "font-size: 50px; font-weight: 100; ">Chapter 3</p>
+                    </div>
+                    <br>
+                    <br>
                 </div>
-                <br>
-                <br>
-            </div>
-            <div class = "" style="background-color: transparent">    
-                
-                <a class = "button" href="#key" onclick="show('key')">Key Things</a>
-                <br>
-                <br>
-                <a class = "button" href="#1" onclick="show('1')">3.1 Derivative Definition</a>
-                <br>
-                <br>
-                <a class = "button" href="#2" onclick="show('2')">3.2 Differentiability</a>
-                <br>
-                <br>
-                <a class = "button" href="#3" onclick="show('3')">3.3 Rules of Differentiation</a>
-                <br>
-                <br>
-                <a class = "button" href="#4" onclick="show('3')">3.4 Velocity and Other ROC</a>
-                <br>
-                <br>
-                <!--<a class = "button" href="#3" onclick="show('3')" style="z-index: 10000">&#171; Chapter 2</a>-->
-                <a class = "button" href="https://sooraj-gupta.github.io/chapter4" onclick="show('3')" style="margin-left: 0px">Chapter 4 &#187;</a>
+                <div class = "" style="background-color: transparent">
+
+                    <a class = "button" href="#key" onclick="show('key')">Key Things</a>
+                    <br>
+                    <br>
+                    <a class = "button" href="#1" onclick="show('1')">3.1 Derivative Definition</a>
+                    <br>
+                    <br>
+                    <a class = "button" href="#2" onclick="show('2')">3.2 Differentiability</a>
+                    <br>
+                    <br>
+                    <a class = "button" href="#3" onclick="show('3')">3.3 Rules of Differentiation</a>
+                    <br>
+                    <br>
+                    <a class = "button" href="#4" onclick="show('3')">3.4 Velocity and Other ROC</a>
+                    <br>
+                    <br>
+                    <!--<a class = "button" href="#3" onclick="show('3')" style="z-index: 10000">&#171; Chapter 2</a>-->
+                    <a class = "button" href="https://sooraj-gupta.github.io/chapter4" onclick="show('3')" style="margin-left: 0px">Chapter 4 &#187;</a>
+                </div>
             </div>
         </div>
-        </div>
-            
+
         <div style = " position: relative;">
             <div id = "key" data-aos = "zoom-in-up"data-aos-duration="500" data-aos-offset="200"
-                  style="padding-top: 100px">
-                <p class = big>
-                    Key Things
-                </p>
-                <div>
-                    <a class = "medium" style = "background-color: darkgray; padding: 4px; color: var(--black)">
-                        Derivative
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small">The slope of a graph at a point.</a><br>
-                        <a class = "small">`d/(dx)f(x) = ``lim_(h->0) (f(x+h) - f(x))/h` </a>
-                        <br><br>
-                        <a class = "small">Power Rule: </a><br>
-                        <a class = "small">`(d/dx)x^n=nx^(n-1)`</a> <br>
-                    </div>
+            style="padding-top: 100px">
+            <p class = big>
+                Key Things
+            </p>
+            <div>
+                <a class = "medium" style = "background-color: darkgray; padding: 4px; color: var(--black)">
+                    Derivative
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small">The slope of a graph at a point.</a><br>
+                    <a class = "small">`d/(dx)f(x) = ``lim_(h->0) (f(x+h) - f(x))/h` </a>
+                    <br><br>
+                    <a class = "small">Power Rule: </a><br>
+                    <a class = "small">`(d/dx)x^n=nx^(n-1)`</a> <br>
                 </div>
             </div>
-            <!-- 3.1 Derivative Definition -->
-            <div id = "1" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                <p class = "pink big"  >
-                    3.1 Derivative Definition
-                </p>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <a class = "pinkback medium" >
-                        Derivative of `f(x)`
-                    </a>
-                    <div class = "verticalpadding" >
-                        <a class = "small" >`f'(x) = lim_(h->0) (f(x+h) - f(x))/h` </a>
-                        <br>
-                        <img src="assets/derivative.png"class = "graph" >
-                    </div>
-                </div>
-
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <a class = "pinkback medium">
-                        Alternate Derivative Definition
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small">`f'(x) = lim_(x->a) (f(x) - f(a))/(x-a)` </a>
-                        <br>
-                        <a class = "pink small"> Where `x` and `f(x)` are generic and `a` and `f(a)` are known</a>
-                    </div>
-                </div>
-
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <a class = "pinkback medium" >
-                        Graph of `f(x)` vs `f'(x)`
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small">`f(x) = x^3-3x` </a>
-                        <br>
-                        <img src="assets/y=x%5E3-3x.png" class = "graph">
-                        <br>
-                        <a class = "small">`f'(x) = 3x^2-3` </a>
-                        <br>
-                        <img src="assets/y=3x%5E2-3.png" class = "graph">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3.2 DIFFERENTIABILITY -->
-            <div id = "2" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                <p class = "purple big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
-                    3.2 Differentiability
-                </p>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <a class = small>For a `f(x)` to be <span class = "purple small" data-aos = "zoom-in-up">differentiable</span> at an `x`. `f(x)` has to be <span   class = "purple small"> continous </span>and <span class = "purple small">locally linear</span> at that `x`</a> <br><br>
-                </div>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
-                    <a class = "purpleback medium">
-                        Graphs where f' DNE
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small purple">1. Corner: `y=|x|`</a> 
-                        <br>
-                        <img src="assets/y=%7Cx%7C.png"class = "graph">
-                        <br>
-                        <a class = "small purple">2. Cusp: `y=x^(2/3)`</a> <br>
-                        <img src="assets/y=x%5E2:3.png" class = "graph">
-                        <br>
-                        <a class = "small purple">Vertical Tangent: `y=`<math><mroot><mi>x</mi><mn>3</mn></mroot></math></a> <br>
-                        <img src="assets/y=3rdroot(x).png" class = "graph">
-                    </div>
-                </div>
-
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <a class = "purpleback medium">
-                        Symmetric Diff. Quotient
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small">`f' = (f(a+h) - f(a-h))/(2h)`</a><br>
-                        <div style = "display:flex; flex-wrap: wrap; align-items: center; justify-content: center;">
-                            <img src = "assets/y=1:10x%5E2.png" style = "width:80vw;max-width: 300px;padding: 0px 0 40px 0;"> 
-                            <a class = "small purple">graphing calculator uses `h=0.001`</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
-                    <a class = "purpleback medium">
-                        Example Problem
-                    </a>
-                    <div class = "verticalpadding">
-                        <a class = "small">`f(x) = x^2 - 1 , x <= 1`<br>&emsp;&emsp;&emsp; ` 2x - 1, x>1`</a><br>
-                        <a class = "small purple">`f' = lim_(h->0^-) ((1+h)^2 - 0)/(h)` `= lim_(h->0^+) (2(1+h) - 0)/(h) `</a><br>
-                        <a class = "small purple">`f' = lim_(h->0^-) (2h+h^2)/(h)` `= lim_(h->0^+) (1+2h)/(h) `</a><br>
-                        <a class = "small purple">`f' = 2 = +&#x221e;`</a><br>
-                        <a class = "small purple">`f' = DNE`</a><br>
-                        <img src="assets/y=x%5E2-1:x%3C=1,2x-1:x%3E1.png" style = "width:80vw;max-width: 500px;padding: 0px 0 40px 0;">
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3.3  -->
-            <div id = "3" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                <p class = "blue big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
-                    3.3 Rules of Differentiation
-                </p>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <div>
-                        <a class = "blueback medium" >
-                            Rules
-                        </a>
-                    </div>
-                    <div class = "verticalpadding">
-                        <a class = "small">Power Rule: </a><a class = "blue small">`(d/dx)(x^n)=nx^(n-1)`</a> <br>
-                        <a class = "small">Constant(c): </a><a class = "blue small">`(d/dx)(c)=0`</a><br> 
-                        <a class = "small">Const x Plynml: </a><a class = "blue small">`(d/dx)(c*u)=c*u'`</a> <br>
-                        <a class = "small">Addition: </a><a class = "blue small">`(d/dx)(u+-v)=u'+-v'`</a><br>
-                        <a class = "small">Multiplication: </a><a class = "blue small">`(d/dx)(u*v)=u*v'+v*u'`</a><br>
-                        <a class = "small">Division: </a><a class = "blue small">`(d/dx)(u/v)=(v*u'-u*v')/v^2`</a><br>
-                    </div>
-                </div>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="0">
-                    <a class = "blueback medium">
-                        Second Derivative
-                    </a>
-                        <div class = "verticalpadding" >
-                            <a class = "small">`d/(dx)f(x) = f'(x)` </a><br>
-                            <a class = "small">`d/(dx)f'(x) = f''(x)` </a><br>
-                            <a class = "blue small">`f''(x)=(d^2y)/(dx^2)`</a><br>
-                    </div>
-                </div>
-
-            </div>
-            
-             <!-- 3.4 Velocity and Other Rates of Change  -->
-            <div id = "4" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                <p class = "pink big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
-                    3.4 Velocity and Other Rates of Change
-                </p>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
-                    <div>
-                        <a class = "pinkback medium" >
-                            Instantaneous Rate of Change
-                        </a>
-                    </div>
-                    <div class = "verticalpadding">
-                        <a class = "small">Deriv: </a><a class = "pink small">`f'(a) = lim_(h->0) (f(a+h) - f(a))/h`</a> <br>
-                    </div>
-                </div>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
-                    <a class = "pinkback medium">
-                        Vector Quantities
-                    </a>
-                        <div class = "verticalpadding" >
-                            <a class = "small">speed`= |v(t)|` </a><br>
-                            <br>
-                            <a class = "pink small">Vector has <span class = "pinkback small">direction</span> and <span class = "pinkback small">size</span></a><br>
-                            <a class = "pink small">Scalar has only a <span class = "pinkback small">size</span></a><br>
-                            <a class = "pink small">Total distance is a scalar and is always positive</a><br>
-                            <a class = "pink small">Displacement is a vector</a><br>
-                    </div>
-                </div>
-                
-                 <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
-                        <a class = "pinkback medium">
-                            Distance vs Velocity vs Acceleration
-                        </a>
-                        
-                        <div class = "verticalpadding" >
-                            <a class = "pink small">Distance vs Time</a><br>
-                            <iframe class = "desmos" src="https://www.desmos.com/calculator/f2vbve2jnf?embed" style="" frameborder=0></iframe>
-                        </div>
-                        
-                         <div class = "verticalpadding" >
-                            <a class = "pink small">Velocity vs Time</a><br>
-                            <iframe class = "desmos" src="https://www.desmos.com/calculator/kymxk5vcy0?embed" style="" frameborder=0></iframe>
-                        </div>
-                        
-                        <div class = "verticalpadding" >
-                            <a class = "pink small">Acceleration vs Time</a><br>
-                            <iframe class = "desmos" src="https://www.desmos.com/calculator/debemfidhu?embed" style="" frameborder=0></iframe>
-                        </div>
-                    </div>
-                
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
-                    <a class = "pinkback medium">
-                        Distance vs Displacement
-                    </a>
-                        <div class = "verticalpadding" >
-                            <a class = "pink small">Total distance is a <span class = "pinkback small">scalar</span> and is always positive</a><br>
-                            <a class = "pink small">Displacement is a <span class = "pinkback small">vector</span></a><br>
-                    </div>
-                </div>
-                <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
-                    <a class = "pinkback medium">
-                        Example Problem
-                    </a>
-                        <div class = "verticalpadding" >
-                            <a class = "normal small">A particle moves along a line with `t>=0s`</a><br>
-                            <a class = "normal small">`S(t)=-t^3+7t^2-14t+8`</a><br><br>
-                            <a class = "normal small">a) What is the instantaneous velocity at `t`? </a><br>
-                            <a class = "pink small">Deriv of `S(t)`</a><br>
-                            <a class = "pink small">`V(t)=-3t^2 +14t-14`</a><br>
-                            <a class = "normal small">b) What is the acceleration at `t`? </a><br>
-                            <a class = "pink small">Deriv of `V(t)`</a><br>
-                            <a class = "pink small">`a(t)=-6t+14`</a><br>
-                            <a class = "normal small">c) When is the particle at rest? </a><br>
-                            <a class = "pink small">Zeroes of V(t)</a><br>
-                            <a class = "pink small">`-3t^2+14t-14=0`</a><br>
-                            <a class = "pink small">`t=(7+-sqrt(7))/3``=3.2, 1.5`</a><br>
-                            <a class = "normal small">d) When does the particle change direction?</a><br>
-                            <table style = "border-collapse: collapse;">
-                                <tr style = "">
-                                    <td class = "row1">
-                                        &nbsp;
-                                    </td>
-                                    <td class = "rowother row1">
-                                        <a class = "pink big">-</a>
-                                    </td>
-                                    <td class = "row1">
-                                        &nbsp;
-                                    </td>
-                                     <td class = "row1">
-                                        <a class = "pink medium">+</a>
-                                    </td>
-                                    <td class = "rowother row1">
-                                        &nbsp;
-                                    </td>
-                                    <td class = "row1">
-                                        <a class = "pink big">-</a>
-                                    </td>
-                                    <td class = "row1">
-                                        &nbsp;
-                                    </td>
-                                    
-                                </tr>
-                                <tr style = "">
-                                    <td class = "">
-                                        &nbsp;
-                                    </td>
-                                    <td class = "rowother">
-                                        &nbsp;
-                                    </td>
-                                    <td >
-                                        &nbsp;
-                                    </td>
-                                     <td>
-                                        &nbsp;
-                                    </td>
-                                    <td class = "rowother">
-                                        &nbsp;
-                                    </td>
-                                    <td >
-                                        &nbsp;
-                                    </td>
-                                    <td >
-                                        &nbsp;
-                                    </td>
-                                </tr>
-                            </table>
-                            <table style = "border-collapse: collapse;">
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td style = "padding: 10px;"><a class = "pink small">1.5</a></td>
-                                    <td style = "padding: 10px;">&nbsp;</td>
-                                    <td style = "padding: 10px;">&nbsp;</td>
-                                    <td style = "padding: 10px;"><a class = "pink small">3.2</a></td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                            </table>
-                            <br>
-                            <a class = "pink small">At `t=1.5,3.2`</a><br>
-                            
-                    </div>
-                    
-                   
-                    
-                </div>
-
-            </div>
-            
-            <div class = "footer">
-                        <div style="display: flex; flex-wrap: wrap; width:250px; justify-content: center;">
-                            <a id = "top" class = "button" style = "font-size: 25px; border-radius: 100px; padding: 5px 20px; padding-bottom: 0px; padding-top: 16px; height: 34px;" href = "#main">&#708;</a>
-                    
-                            <div class = typewriter>
-                                <p style="padding-top:0px; padding-bottom: 2px;font-size: 20px; height: 25px; animation: blink-cursor 1s step-end infinite,typing 8s steps(24,end) infinite;">Created by: Sooraj Gupta</p>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
         </div>
-        </center>
-        <script src = "scroll/scroll.js"></script>
-    </body>
+        <!-- 3.1 Derivative Definition -->
+        <div id = "1" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+            <p class = "pink big"  >
+                3.1 Derivative Definition
+            </p>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <a class = "pinkback medium" >
+                    Derivative of `f(x)`
+                </a>
+                <div class = "verticalpadding" >
+                    <a class = "small" >`f'(x) = lim_(h->0) (f(x+h) - f(x))/h` </a>
+                    <br>
+                    <img src="assets/derivative.png"class = "graph" >
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <a class = "pinkback medium">
+                    Alternate Derivative Definition
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small">`f'(x) = lim_(x->a) (f(x) - f(a))/(x-a)` </a>
+                    <br>
+                    <a class = "pink small"> Where `x` and `f(x)` are generic and `a` and `f(a)` are known</a>
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <a class = "pinkback medium" >
+                    Graph of `f(x)` vs `f'(x)`
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small">`f(x) = x^3-3x` </a>
+                    <br>
+                    <img src="assets/y=x%5E3-3x.png" class = "graph">
+                    <br>
+                    <a class = "small">`f'(x) = 3x^2-3` </a>
+                    <br>
+                    <img src="assets/y=3x%5E2-3.png" class = "graph">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3.2 DIFFERENTIABILITY -->
+        <div id = "2" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+            <p class = "purple big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
+                3.2 Differentiability
+            </p>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <a class = small>For a `f(x)` to be <span class = "purple small" data-aos = "zoom-in-up">differentiable</span> at an `x`. `f(x)` has to be <span   class = "purple small"> continous </span>and <span class = "purple small">locally linear</span> at that `x`</a> <br><br>
+            </div>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
+                <a class = "purpleback medium">
+                    Graphs where f' DNE
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small purple">1. Corner: `y=|x|`</a>
+                    <br>
+                    <img src="assets/y=%7Cx%7C.png"class = "graph">
+                    <br>
+                    <a class = "small purple">2. Cusp: `y=x^(2/3)`</a> <br>
+                    <img src="assets/y=x%5E2:3.png" class = "graph">
+                    <br>
+                    <a class = "small purple">Vertical Tangent: `y=`<math><mroot><mi>x</mi><mn>3</mn></mroot></math></a> <br>
+                    <img src="assets/y=3rdroot(x).png" class = "graph">
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <a class = "purpleback medium">
+                    Symmetric Diff. Quotient
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small">`f' = (f(a+h) - f(a-h))/(2h)`</a><br>
+                    <div style = "display:flex; flex-wrap: wrap; align-items: center; justify-content: center;">
+                        <img src = "assets/y=1:10x%5E2.png" style = "width:80vw;max-width: 300px;padding: 0px 0 40px 0;">
+                        <a class = "small purple">graphing calculator uses `h=0.001`</a>
+                    </div>
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
+                <a class = "purpleback medium">
+                    Example Problem
+                </a>
+                <div class = "verticalpadding">
+                    <a class = "small">`f(x) = x^2 - 1 , x <= 1`<br>&emsp;&emsp;&emsp; ` 2x - 1, x>1`</a><br>
+                    <a class = "small purple">`f' = lim_(h->0^-) ((1+h)^2 - 0)/(h)` `= lim_(h->0^+) (2(1+h) - 0)/(h) `</a><br>
+                    <a class = "small purple">`f' = lim_(h->0^-) (2h+h^2)/(h)` `= lim_(h->0^+) (1+2h)/(h) `</a><br>
+                    <a class = "small purple">`f' = 2 = +&#x221e;`</a><br>
+                    <a class = "small purple">`f' = DNE`</a><br>
+                    <img src="assets/y=x%5E2-1:x%3C=1,2x-1:x%3E1.png" style = "width:80vw;max-width: 500px;padding: 0px 0 40px 0;">
+                </div>
+            </div>
+        </div>
+
+        <!-- 3.3  -->
+        <div id = "3" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+            <p class = "blue big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
+                3.3 Rules of Differentiation
+            </p>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <div>
+                    <a class = "blueback medium" >
+                        Rules
+                    </a>
+                </div>
+                <div class = "verticalpadding">
+                    <a class = "small">Power Rule: </a><a class = "blue small">`(d/dx)(x^n)=nx^(n-1)`</a> <br>
+                    <a class = "small">Constant(c): </a><a class = "blue small">`(d/dx)(c)=0`</a><br>
+                    <a class = "small">Const x Plynml: </a><a class = "blue small">`(d/dx)(c*u)=c*u'`</a> <br>
+                    <a class = "small">Addition: </a><a class = "blue small">`(d/dx)(u+-v)=u'+-v'`</a><br>
+                    <a class = "small">Multiplication: </a><a class = "blue small">`(d/dx)(u*v)=u*v'+v*u'`</a><br>
+                    <a class = "small">Division: </a><a class = "blue small">`(d/dx)(u/v)=(v*u'-u*v')/v^2`</a><br>
+                </div>
+            </div>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="0">
+                <a class = "blueback medium">
+                    Second Derivative
+                </a>
+                <div class = "verticalpadding" >
+                    <a class = "small">`d/(dx)f(x) = f'(x)` </a><br>
+                    <a class = "small">`d/(dx)f'(x) = f''(x)` </a><br>
+                    <a class = "blue small">`f''(x)=(d^2y)/(dx^2)`</a><br>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3.4 Velocity and Other Rates of Change  -->
+        <div id = "4" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+            <p class = "pink big" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300" >
+                3.4 Velocity and Other Rates of Change
+            </p>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <div>
+                    <a class = "pinkback medium" >
+                        Instantaneous Rate of Change
+                    </a>
+                </div>
+                <div class = "verticalpadding">
+                    <a class = "small">Deriv: </a><a class = "pink small">`f'(a) = lim_(h->0) (f(a+h) - f(a))/h`</a> <br>
+                </div>
+            </div>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
+                <a class = "pinkback medium">
+                    Vector Quantities
+                </a>
+                <div class = "verticalpadding" >
+                    <a class = "small">speed`= |v(t)|` </a><br>
+                    <br>
+                    <a class = "pink small">Vector has <span class = "pinkback small">direction</span> and <span class = "pinkback small">size</span></a><br>
+                    <a class = "pink small">Scalar has only a <span class = "pinkback small">size</span></a><br>
+                    <a class = "pink small">Total distance is a scalar and is always positive</a><br>
+                    <a class = "pink small">Displacement is a vector</a><br>
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
+                <a class = "pinkback medium">
+                    Distance vs Velocity vs Acceleration
+                </a>
+
+                <div class = "verticalpadding" >
+                    <a class = "pink small">Distance vs Time</a><br>
+                    <iframe class = "desmos" src="https://www.desmos.com/calculator/f2vbve2jnf?embed" style="" frameborder=0></iframe>
+                </div>
+
+                <div class = "verticalpadding" >
+                    <a class = "pink small">Velocity vs Time</a><br>
+                    <iframe class = "desmos" src="https://www.desmos.com/calculator/kymxk5vcy0?embed" style="" frameborder=0></iframe>
+                </div>
+
+                <div class = "verticalpadding" >
+                    <a class = "pink small">Acceleration vs Time</a><br>
+                    <iframe class = "desmos" src="https://www.desmos.com/calculator/debemfidhu?embed" style="" frameborder=0></iframe>
+                </div>
+            </div>
+
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
+                <a class = "pinkback medium">
+                    Distance vs Displacement
+                </a>
+                <div class = "verticalpadding" >
+                    <a class = "pink small">Total distance is a <span class = "pinkback small">scalar</span> and is always positive</a><br>
+                    <a class = "pink small">Displacement is a <span class = "pinkback small">vector</span></a><br>
+                </div>
+            </div>
+            <div data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="200">
+                <a class = "pinkback medium">
+                    Example Problem
+                </a>
+                <div class = "verticalpadding" >
+                    <a class = "normal small">A particle moves along a line with `t>=0s`</a><br>
+                    <a class = "normal small">`S(t)=-t^3+7t^2-14t+8`</a><br><br>
+                    <a class = "normal small">a) What is the instantaneous velocity at `t`? </a><br>
+                    <a class = "pink small">Deriv of `S(t)`</a><br>
+                    <a class = "pink small">`V(t)=-3t^2 +14t-14`</a><br>
+                    <a class = "normal small">b) What is the acceleration at `t`? </a><br>
+                    <a class = "pink small">Deriv of `V(t)`</a><br>
+                    <a class = "pink small">`a(t)=-6t+14`</a><br>
+                    <a class = "normal small">c) When is the particle at rest? </a><br>
+                    <a class = "pink small">Zeroes of V(t)</a><br>
+                    <a class = "pink small">`-3t^2+14t-14=0`</a><br>
+                    <a class = "pink small">`t=(7+-sqrt(7))/3``=3.2, 1.5`</a><br>
+                    <a class = "normal small">d) When does the particle change direction?</a><br>
+                    <table style = "border-collapse: collapse;">
+                        <tr style = "">
+                            <td class = "row1">
+                                &nbsp;
+                            </td>
+                            <td class = "rowother row1">
+                                <a class = "pink big">-</a>
+                            </td>
+                            <td class = "row1">
+                                &nbsp;
+                            </td>
+                            <td class = "row1">
+                                <a class = "pink medium">+</a>
+                            </td>
+                            <td class = "rowother row1">
+                                &nbsp;
+                            </td>
+                            <td class = "row1">
+                                <a class = "pink big">-</a>
+                            </td>
+                            <td class = "row1">
+                                &nbsp;
+                            </td>
+
+                        </tr>
+                        <tr style = "">
+                            <td class = "">
+                                &nbsp;
+                            </td>
+                            <td class = "rowother">
+                                &nbsp;
+                            </td>
+                            <td >
+                                &nbsp;
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td class = "rowother">
+                                &nbsp;
+                            </td>
+                            <td >
+                                &nbsp;
+                            </td>
+                            <td >
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                    <table style = "border-collapse: collapse;">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td style = "padding: 10px;"><a class = "pink small">1.5</a></td>
+                            <td style = "padding: 10px;">&nbsp;</td>
+                            <td style = "padding: 10px;">&nbsp;</td>
+                            <td style = "padding: 10px;"><a class = "pink small">3.2</a></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                    <br>
+                    <a class = "pink small">At `t=1.5,3.2`</a><br>
+
+                </div>
+
+                <br>
+                <hr style = "width: 50%">
+                <br>
+                <br>
+                <a class = "button" onclick = "toggleForm();" > Contact Form </a>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div id = "form" data-aos = "zoom-in-up" data-aos-duration="500" data-aos-offset="300">
+                <div class = "form" data-aos = "fade-up" data-aos-duration = "1000" data-aos-offset="200">
+                    <div>
+                        <h2 style = "font-weight: 100;">Contact Form</h2>
+                        <br>
+                        <form action="https://formspree.io/mrgobalj" method="POST">
+                            <input name = "name" type="text" placeholder="Name" required></input>
+                            <br>
+                            <br>
+                            <br>
+                            <input name = "email" type="text" placeholder="Email (Optional)">
+                            <br>
+                            <br>
+                            <br>
+                            <textarea name = "text" placeholder="Your Suggestion..." rows="5" required></textarea>
+                            <br>
+                            <br>
+                            <br>
+                          <button class = "button" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class = "footer">
+            <div style="display: flex; flex-wrap: wrap; width:250px; justify-content: center;">
+                <a id = "top" class = "button" style = "font-size: 25px; border-radius: 100px; padding: 5px 20px; padding-bottom: 0px; padding-top: 16px; height: 34px;" href = "#main">&#708;</a>
+
+                <div class = typewriter>
+                    <p style="padding-top:0px; padding-bottom: 2px;font-size: 20px; height: 25px; animation: blink-cursor 1s step-end infinite,typing 8s steps(24,end) infinite;">Created by: Sooraj Gupta</p>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</center>
+<script src = "scroll/scroll.js"></script>
+</body>
 </html>

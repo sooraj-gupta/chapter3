@@ -3,7 +3,7 @@ body,html{
     line-height: 30px;
     padding: 0px;
     margin: 0;
-    font-family:'Roboto'; 
+    font-family:'Roboto';
     font-weight: 300;
     scroll-behavior: smooth;
     background-color: white;
@@ -23,12 +23,12 @@ div{
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 30px auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: 1px; /* Adjust as needed */
-    animation: 
+    animation:
     titletyping 5s steps(10, end) infinite,
     blink-cursor 1s step-end infinite;
     animation-delay: 1s;
     background-color: transparent;
-    
+
 }
 
 /* The typing effect */
@@ -39,7 +39,7 @@ div{
   31% { width: calc(85%) }
   90% { width: calc(85% ) }
   100% { width: 0 }
-  
+
 }
 
 @keyframes typing{
@@ -63,7 +63,7 @@ div{
     margin:  10px 0px;
     color: black;
     transition: 0.2s;
-    box-shadow: 2px 3px 10px #BBB; 
+    box-shadow: 2px 3px 10px #BBB;
     font-size: 20px;
 }
 .button:hover{
@@ -77,12 +77,7 @@ div{
     background-color: black;
     color:white
 }
-hr{
-    width: 100%;
-    border:none;
-    margin: 0;
-    padding 0;
-}
+
 .purple{
     color: mediumpurple;
 }
@@ -174,4 +169,44 @@ hr{
     width:80vw;
     max-width: 500px;
     height: 400px;
+}
+
+#form {
+    transition: 1s;
+    overflow: hidden;
+    height: 0px;
+}
+.form{
+    box-shadow: -2px 4px 8px #CCC;
+    width: 80vw;
+    max-width: 350px;
+    padding: 40px 0px;
+    padding-top: 30px;
+
+}
+.form div label{
+    font-size: 15px;
+}
+
+.form > div {
+
+}
+input[type=text], textarea{
+    border: none;
+    border-bottom: 1px solid black;
+    font-family: 'Roboto';
+    font-size: 18px;
+    font-weight: 100;
+}
+
+input:focus, textarea:focus{
+    outline: none;
+}
+
+button{
+    border:none;
+    font-family: 'Roboto';
+    font-size: 20px;
+    font-weight: 100;
+    background-color :white;
 }
